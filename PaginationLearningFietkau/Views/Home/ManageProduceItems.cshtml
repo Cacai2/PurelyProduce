@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "ManageProduceItems";
+}
+@model Perishable
+
+<h1>ManageProduceItems</h1>
+<form method="post" asp-controller="Home" asp-action="EditProduceItem">
+    <div style="border: 2px solid #007bff; border-radius: 5px; padding: 15px;">
+        <p>
+            <input type = "hidden" asp-for="PerishableID" value ="@Model.PerishableID"/>
+            Name: <input type="text" asp-for="Name" value="@Model.Name" />
+            <br />
+            Price: <input type="text" asp-for="Price" value="@Model.Price" />
+            <br />
+            Expiration Date: <input type="text" asp-for="ExDate" value="@Model.ExDate" />
+        </p>
+    </div>
+
+    <br />
+    <button class="btn btn-secondary" type="submit">Update Produce Details</button>
+</form>
+<br />
+<form >
+    <button asp-controller="Home" asp-action="Delete" class="btn btn-danger" type="submit" asp-route-id="@Model.PerishableID">Delete</button>
+</form>

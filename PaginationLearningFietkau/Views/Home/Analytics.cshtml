@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewData["Title"] = "Analytics";
+}
+
+@model List<Perishable>
+<style>
+    .bar-vertical{
+        padding:0;
+        width:1px;
+        background-color: #1E96AA; /* Blue-green color */
+        margin: 0 auto; /* Center the bar */
+        border-radius: 5px 5px 0 0; /* Rounded top corners */
+    }
+
+    .bar-container {
+        display: flex;
+        align-items: flex-end; /* Align bars to the bottom */
+        height: 200px; /* Set a height for the container */
+        overflow: hidden; /* Ensure bars stay within container */
+        position: relative;
+    }
+</style>
+<h1>Analytics</h1>
+<br />
+<br />
+<h3>Prices</h3>
+<div class="container">
+    <h5>Average price: <span class="blue-color fw-bold">@ViewBag.AveragePrice</span></h5>
+    <div class="text-center bar-container">
+        @foreach (var item in Model)
+        {
+            double iblue = item.Price * 50;
+            <div class="col bar-vertical" style="background-color:rgb(30, 150, @iblue); height:calc(@item.Price*10px);" data-toggle="tooltip" title="@item.Name&#10;@item.Price">
+            
+            </div>
+        }
+    </div>
+</div>
+<br />
+<br />
+<h3>Expiration date trends</h3>
+<div class="container">
+    <div class="row">
+        <div class="container col-md-6">
+            <h5></h5>
+            <table class="table table-bordered">
+                <thread>
+                    <td><span class="fw-bold">Item name</span></td>
+                    <td><span class="fw-bold">Item Expiration Date</span></td>
+                </thread>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Name</td>
+                            <td>@item.ExDate</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="container col-md-6">
+            <h5></h5>
+            <table class="table table-bordered">
+                <thread>
+                    <td><span class="fw-bold">Item name</span></td>
+                    <td><span class="fw-bold">Item Expiration Date</span></td>
+                </thread>
+                <tbody>
+                    <!--mm/dd/yyyy-->
+                    @foreach (var item in Model)
+                    {
+                        if ((item.PerishableID < 30 && item.PerishableID > 10) || (item.Price > 3.2 && item.PerishableID > 30))
+                        {
+                            <tr>
+                                <td>@item.Name</td>
+                                <td>@item.ExDate</td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip(); // Initialize all tooltips
+    });
+</script>
+<!--
+    
+
+
+
+<div>
+    <table style="border-collapse: collapse; width: 100%; border: 3px solid #ddd;">
+        <thead>
+            <td>Name</td>
+            <td>Details</td>
+        </thead>
+
+        <tbody>
+            foreach(var e in Model)
+            {
+                <tr>
+                    <td>e.EntStageName</td>
+                    <td>
+                        <a asp-controller="Home" asp-action="ViewEntDetails" asp-route-id="e.EntertainerID" >
+                            <button type="button" class="btn btn-secondary">View Details</button>
+                        </a>
+                    </td>
+                </tr>
+            }
+
+
+
+        </tbody>
+
+    </table>
+
+
+    <br />
+    <div>
+        <a asp-controller="Home" asp-action="AddEntertainer">
+            <button type="button" class="btn btn-secondary">Add Entertainer</button>
+        </a>
+    </div>
+
+
+</div>
+-->

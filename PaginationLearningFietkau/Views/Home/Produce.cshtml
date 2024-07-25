@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Produce";
+}
+
+@model ProduceListViewModel
+
+<h1 class="my-4">Produce</h1>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model.Perishables)
+        {
+            <div class="col-md-3">
+                <div class="produce-item p-3 mb-4">
+                    <h2>@item.Name</h2>
+                    <h4>$@item.Price</h4>
+                    <h4>@item.ExDate</h4>
+                    <a class="btn btn-primary mt-2" asp-controller="Home" asp-action="ManageProduceItems" asp-route-id="@item.PerishableID">Update item details</a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<br />
+<br />
+<div page-model="@Model.PaginationInfo" page-action="Produce"></div>
+<br />
+<br />
+<a class="btn btn-info" asp-controller="Home" asp-action="AddProduceItem">Add another item</a>
+
+
+
+<style>
+    .produce-item {
+        border: 1px solid #e0e0e0;
+        border-radius: 8px;
+        padding: 1em;
+        text-align: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+        .produce-item h2 {
+            margin-bottom: 8px;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .produce-item h4 {
+            margin: 0;
+            font-size: 1.25rem;
+            color: #666;
+        }
+</style>

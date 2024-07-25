@@ -1,0 +1,16 @@
+﻿
+@{
+    ViewData["Title"] = "Delete Item";
+}
+@model Perishable
+
+<h2>Confirm Deletion</h2>
+<h3>Are you sure you want to delete @Model.Name</h3>
+<form method="post" asp-controller="Home" asp-action="Delete">
+    <button asp-controller="Home" asp-action="Produce" class="btn btn-outline-info">Cancel</button>
+    <button type="submit"class="btn btn-danger">Delete</button>
+    <input type="hidden" asp-for="Name"/>
+    <input type="hidden" asp-for="PerishableID" />
+    <input type="hidden" asp-for="Price" />
+    <input type="hidden" asp-for="ExDate" />
+</form>

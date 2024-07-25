@@ -1,0 +1,28 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Add Produce Item";
+}
+@model Perishable
+
+<h2>Add a produce item</h2>
+<form method="post" asp-controller ="Home" asp-action="AddProduceItem">
+    <div style="border: 2px solid #007bff; border-radius: 5px; padding: 15px;">
+        <p>
+            <label asp-for="Name">Name:</label>
+            <input type="text" asp-for="Name" class="form-control" />
+        </p>
+        <p>
+            <label asp-for="Price">Price:</label>
+            <input type="text" asp-for="Price" class="form-control" />
+        </p>
+        <p>
+            <label asp-for="ExDate">Experation date:</label>
+            <input type="text" asp-for="ExDate" class="form-control" />
+        </p>
+
+    </div>
+    <br />
+    <button class="btn btn-secondary" type="submit">Add New Item</button>
+</form>

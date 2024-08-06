@@ -4,6 +4,7 @@ using System.Diagnostics;
 using Microsoft.Extensions.Logging;
 using System.Drawing.Printing;
 using PaginationLearningFietkau.Models.ViewModels;
+using Newtonsoft.Json;
 
 namespace PaginationLearningFietkau.Controllers
 {
@@ -124,9 +125,30 @@ namespace PaginationLearningFietkau.Controllers
             {
                 totalPrice += item.Price;
             }
+            int medianPrice = perishables.Count / 2;
             var averagePrice = totalPrice / perishables.Count;
             ViewBag.AveragePrice = averagePrice;
+            ViewBag.MedianPrice = GetMedianPrice(perishables);
+            string jsonArray = JsonConvert.SerializeObject(perishables);
+            ViewBag.JsonArray = jsonArray;
             return View(perishables);
+        }
+
+        public double GetMedianPrice(List<Perishable> perishables)
+        {
+            int count = perishables.Count();
+            if (count % 2 == 1)
+            {
+                // Odd number of elements, return the middle one
+                return perishables[count / 2].Price;
+            }
+            else
+            {
+                // Even number of elements, return the average of the two middle ones
+                double middle1 = perishables[(count / 2) - 1].Price;
+                double middle2 = perishables[count / 2].Price;
+                return (middle1 + middle2) / 2;
+            }
         }
     }
 }

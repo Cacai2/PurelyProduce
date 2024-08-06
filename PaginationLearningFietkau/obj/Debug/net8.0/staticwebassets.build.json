@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "KUK9CG/vjHuHWqqpV7ZDuTDDKWvL3di9l0k2y8RpSiw=",
+  "Hash": "MABSSWsWBWzF4oteT168wYiNs/ZhcNYMv0TS8uSyFkw=",
   "Source": "PaginationLearningFietkau",
   "BasePath": "_content/PaginationLearningFietkau",
   "Mode": "Default",
@@ -91,6 +91,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\favicon.ico"
+    },
+    {
+      "Identity": "C:\\Users\\Mordecai\\Documents\\GitHub\\PurelyProduce\\PaginationLearningFietkau\\wwwroot\\js\\dateFromPerishable.js",
+      "SourceId": "PaginationLearningFietkau",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Mordecai\\Documents\\GitHub\\PurelyProduce\\PaginationLearningFietkau\\wwwroot\\",
+      "BasePath": "_content/PaginationLearningFietkau",
+      "RelativePath": "js/dateFromPerishable.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\dateFromPerishable.js"
     },
     {
       "Identity": "C:\\Users\\Mordecai\\Documents\\GitHub\\PurelyProduce\\PaginationLearningFietkau\\wwwroot\\js\\site.js",

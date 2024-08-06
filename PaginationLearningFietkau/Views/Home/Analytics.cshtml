@@ -1,54 +1,67 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Analytics";
+    var jsonArray = ViewBag.JsonArray;
 }
 
 @model List<Perishable>
+
 <style>
-    .bar-vertical{
-        padding:0;
-        width:1px;
-        background-color: #1E96AA; /* Blue-green color */
-        margin: 0 auto; /* Center the bar */
-        border-radius: 5px 5px 0 0; /* Rounded top corners */
+    .bar-vertical {
+        padding: 0;
+        width: 1px;
+        background-color: #1E96AA;
+        margin: 0 auto;
+        border-radius: 5px 5px 0 0;
     }
 
     .bar-container {
         display: flex;
-        align-items: flex-end; /* Align bars to the bottom */
-        height: 200px; /* Set a height for the container */
-        overflow: hidden; /* Ensure bars stay within container */
+        align-items: flex-end;
+        height: 200px;
+        overflow: hidden;
         position: relative;
     }
 </style>
+
 <h1>Analytics</h1>
 <br />
 <br />
 <h3>Prices</h3>
 <div class="container">
     <h5>Average price: <span class="blue-color fw-bold">@ViewBag.AveragePrice</span></h5>
+    <h5>Median price: <span class="blue-color fw-bold">@ViewBag.MedianPrice</span></h5>
     <div class="text-center bar-container">
         @foreach (var item in Model)
         {
             double iblue = item.Price * 50;
-            <div class="col bar-vertical" style="background-color:rgb(30, 150, @iblue); height:calc(@item.Price*10px);" data-toggle="tooltip" title="@item.Name&#10;@item.Price">
-            
-            </div>
+            if (item.Price == ViewBag.MedianPrice)
+            {
+                <div class="col bar-vertical" style="background-color: rgb(30, 200, @iblue); height: calc(@item.Price * 10px);" data-toggle="tooltip" title="@item.Name&#10;@item.Price">
+                </div>
+            }
+            else
+            {
+                <div class="col bar-vertical" style="background-color: rgb(30, 150, @iblue); height: calc(@item.Price * 10px);" data-toggle="tooltip" title="@item.Name&#10;@item.Price">
+                </div>
+            }
         }
     </div>
 </div>
 <br />
 <br />
+
 <h3>Expiration date trends</h3>
 <div class="container">
     <div class="row">
         <div class="container col-md-6">
             <h5></h5>
             <table class="table table-bordered">
-                <thread>
-                    <td><span class="fw-bold">Item name</span></td>
-                    <td><span class="fw-bold">Item Expiration Date</span></td>
-                </thread>
+                <thead>
+                    <tr>
+                        <th><span class="fw-bold">Item name</span></th>
+                        <th><span class="fw-bold">Item Expiration Date</span></th>
+                    </tr>
+                </thead>
                 <tbody>
                     @foreach (var item in Model)
                     {
@@ -63,12 +76,13 @@
         <div class="container col-md-6">
             <h5></h5>
             <table class="table table-bordered">
-                <thread>
-                    <td><span class="fw-bold">Item name</span></td>
-                    <td><span class="fw-bold">Item Expiration Date</span></td>
-                </thread>
+                <thead>
+                    <tr>
+                        <th><span class="fw-bold">Item name</span></th>
+                        <th><span class="fw-bold">Item Expiration Date</span></th>
+                    </tr>
+                </thead>
                 <tbody>
-                    <!--mm/dd/yyyy-->
                     @foreach (var item in Model)
                     {
                         if ((item.PerishableID < 30 && item.PerishableID > 10) || (item.Price > 3.2 && item.PerishableID > 30))
@@ -85,52 +99,18 @@
     </div>
 </div>
 
-
-
 <script>
-    $(document).ready(function(){
+    // JSON string from Razor
+    var jsonArray = @Html.Raw(ViewBag.JsonArray);
+
+    // Convert JSON string to JavaScript array
+    var jsArray = JSON.parse(jsonArray);
+
+    $(document).ready(function () {
         $('[data-toggle="tooltip"]').tooltip(); // Initialize all tooltips
+
+        console.log(jsonArray);
+        // Log the array to the console
+        console.log(jsArray);
     });
 </script>
-<!--
-    
-
-
-
-<div>
-    <table style="border-collapse: collapse; width: 100%; border: 3px solid #ddd;">
-        <thead>
-            <td>Name</td>
-            <td>Details</td>
-        </thead>
-
-        <tbody>
-            foreach(var e in Model)
-            {
-                <tr>
-                    <td>e.EntStageName</td>
-                    <td>
-                        <a asp-controller="Home" asp-action="ViewEntDetails" asp-route-id="e.EntertainerID" >
-                            <button type="button" class="btn btn-secondary">View Details</button>
-                        </a>
-                    </td>
-                </tr>
-            }
-
-
-
-        </tbody>
-
-    </table>
-
-
-    <br />
-    <div>
-        <a asp-controller="Home" asp-action="AddEntertainer">
-            <button type="button" class="btn btn-secondary">Add Entertainer</button>
-        </a>
-    </div>
-
-
-</div>
--->
